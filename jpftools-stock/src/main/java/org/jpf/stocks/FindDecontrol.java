@@ -27,13 +27,22 @@ import org.jpf.utils.excelutils.AiExcelJxlUtil;
  */
 public class FindDecontrol extends StockBaseClass {
   public FindDecontrol() {
+    try {
+      g_BeginStr = AiConfigUtil.GetConfigString("BEGINSTR_KEY");
+      g_EndStr = AiConfigUtil.GetConfigString("ENDSTR_KEY");
+      g_MonthStr = AiConfigUtil.GetConfigString("MONTH_KEY");
 
+    } catch (Exception e) {
+      // TODO: handle exception
+      e.printStackTrace();
+    }
   }
 
-  private String g_BeginStr = AiConfigUtil.GetConfigString("BEGINSTR_KEY");
-  private String g_EndStr = AiConfigUtil.GetConfigString("ENDSTR_KEY");
-  private String g_MonthStr = AiConfigUtil.GetConfigString("MONTH_KEY");
+  private String g_BeginStr;
+  private String g_EndStr;
+  private String g_MonthStr;
   private boolean g_FindBegin = false;
+
 
   @Override
   public boolean FindStr(String inStr) throws Exception {

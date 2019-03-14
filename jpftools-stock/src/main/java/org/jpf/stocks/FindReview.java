@@ -27,12 +27,23 @@ import org.jpf.utils.excelutils.AiExcelJxlUtil;
  */
 public class FindReview extends StockBaseClass {
   public FindReview() {
-    DoWork();
+    try {
+      g_BeginStr = AiConfigUtil.GetConfigString("KEYSTR_REVIEW_BEGIN");
+      g_EndStr = AiConfigUtil.GetConfigString("KEYSTR_REVIEW_END");
+      EXECL_REVIEW_COLS = AiConfigUtil.GetConfigString("EXECL_REVIEW_COLS");
+
+      DoWork();
+    } catch (Exception e) {
+      // TODO: handle exception
+      e.printStackTrace();
+    }
+
+
   }
 
-  private String g_BeginStr = AiConfigUtil.GetConfigString("KEYSTR_REVIEW_BEGIN");
-  private String g_EndStr = AiConfigUtil.GetConfigString("KEYSTR_REVIEW_END");
-  private String EXECL_REVIEW_COLS = AiConfigUtil.GetConfigString("EXECL_REVIEW_COLS");
+  private String g_BeginStr;
+  private String g_EndStr;
+  private String EXECL_REVIEW_COLS;
 
   private int i = 0;
 

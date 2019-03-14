@@ -25,9 +25,17 @@ import org.jpf.utils.excelutils.AiExcelJxlUtil;
  * @version 1.0
  */
 public class FindStockHold extends StockBaseClass {
-  private String g_BeginStr = AiConfigUtil.GetConfigString("KEYSTR_HOLD_BEGIN");
+  private String g_BeginStr;
 
-  public FindStockHold() {}
+  public FindStockHold() {
+
+    try {
+      g_BeginStr = AiConfigUtil.GetConfigString("KEYSTR_HOLD_BEGIN");
+    } catch (Exception e) {
+      // TODO: handle exception
+      e.printStackTrace();
+    }
+  }
 
   /**
    *

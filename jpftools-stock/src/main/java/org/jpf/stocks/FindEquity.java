@@ -28,10 +28,19 @@ import org.jpf.utils.excelutils.AiExcelJxlUtil;
  * @version 1.0
  */
 public class FindEquity extends StockBaseClass {
-  public FindEquity() {}
+  public FindEquity() {
+    try {
+      g_BeginStr = AiConfigUtil.GetConfigString("KEYSTR_EQUITY_BEGIN");
+      g_EndStr = AiConfigUtil.GetConfigString("KEYSTR_EQUITY_END");
+    } catch (Exception e) {
+      // TODO: handle exception
+      e.printStackTrace();
+    }
 
-  private String g_BeginStr = AiConfigUtil.GetConfigString("KEYSTR_EQUITY_BEGIN");
-  private String g_EndStr = AiConfigUtil.GetConfigString("KEYSTR_EQUITY_END");
+  }
+
+  private String g_BeginStr;
+  private String g_EndStr;
 
 
   @Override

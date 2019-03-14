@@ -38,11 +38,11 @@ import jxl.write.WritableSheet;
  */
 public class StockBaseClass {
   // 输入文件目录
-  public String InFilePath = AiConfigUtil.GetConfigString("InFilePath");
+  public String InFilePath;
 
   // 输出文件名称(带目录)
-  public String OutTextFileName = AiConfigUtil.GetConfigString("OutTextFileName");
-  public String OutExeclFileName = AiConfigUtil.GetConfigString("OutExeclFileName");;
+  public String OutTextFileName;
+  public String OutExeclFileName;;
 
   // 关键字前面行数
   public int RowForward = 0;
@@ -55,18 +55,32 @@ public class StockBaseClass {
   public Vector g_FileVector = new Vector();
 
   // 不分析的股票代码
-  private String OutStock = AiConfigUtil.GetConfigString("OutStock");
+  private String OutStock;
 
   // 是否继续查找
   public boolean bFindResult = true;
 
   // 是否要从资料到文件文件
-  private String ISMAKETEXTFILE = AiConfigUtil.GetConfigString("ISMAKETEXTFILE");
+  private String ISMAKETEXTFILE;
   // #是否要从TEXT到EXCEL，0 不，1 是
-  private String ISMAKEEXCELTFILE = AiConfigUtil.GetConfigString("ISMAKEEXCELTFILE");
+  private String ISMAKEEXCELTFILE;
 
   public StockBaseClass() {
+    try {
+      // 是否要从资料到文件文件
+      ISMAKETEXTFILE = AiConfigUtil.GetConfigString("ISMAKETEXTFILE");
+      // #是否要从TEXT到EXCEL，0 不，1 是
+      ISMAKEEXCELTFILE = AiConfigUtil.GetConfigString("ISMAKEEXCELTFILE");
+      OutStock = AiConfigUtil.GetConfigString("OutStock");
+      InFilePath = AiConfigUtil.GetConfigString("InFilePath");
 
+      // 输出文件名称(带目录)
+      OutTextFileName = AiConfigUtil.GetConfigString("OutTextFileName");
+      OutExeclFileName = AiConfigUtil.GetConfigString("OutExeclFileName");;
+    } catch (Exception e) {
+      // TODO: handle exception
+      e.printStackTrace();
+    }
   }
 
   public void DoWork() {

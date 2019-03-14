@@ -26,11 +26,21 @@ import org.jpf.utils.excelutils.AiExcelJxlUtil;
  */
 public class FindFund extends StockBaseClass {
 
-  public FindFund() {}
+  public FindFund() {
+    try {
+      g_BeginStr = AiConfigUtil.GetConfigString("KEYSTR_FUND_BEGIN");
+      g_EndStr = AiConfigUtil.GetConfigString("KEYSTR_FUND_END");
+      g_KeyStr = AiConfigUtil.GetConfigString("KEYSTR_FUND_KEY");
+    } catch (Exception e) {
+      // TODO: handle exception
+      e.printStackTrace();
+    }
+  }
 
-  private String g_BeginStr = AiConfigUtil.GetConfigString("KEYSTR_FUND_BEGIN");
-  private String g_EndStr = AiConfigUtil.GetConfigString("KEYSTR_FUND_END");
-  private String g_KeyStr = AiConfigUtil.GetConfigString("KEYSTR_FUND_KEY");
+  private String g_BeginStr;
+  private String g_EndStr;
+  private String g_KeyStr;
+
   private boolean g_FindBegin = false;
 
   /**

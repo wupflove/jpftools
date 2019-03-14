@@ -28,9 +28,17 @@ public class FindIssuePrice extends StockBaseClass {
 
 
   // 关键字:发行价格
-  private String g_KeyFindStr = AiConfigUtil.GetConfigString("KEYSTR_ISSUEPRICE");
+  private String g_KeyFindStr;
 
-  public FindIssuePrice() {}
+  public FindIssuePrice() {
+
+    try {
+      g_KeyFindStr = AiConfigUtil.GetConfigString("KEYSTR_ISSUEPRICE");
+    } catch (Exception e) {
+      // TODO: handle exception
+      e.printStackTrace();
+    }
+  }
 
   @Override
   public boolean FindStr(String inStr) throws Exception {

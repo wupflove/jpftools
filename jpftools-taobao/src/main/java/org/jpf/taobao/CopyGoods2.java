@@ -24,7 +24,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.jpf.utils.AiDateTimeUtil;
+import org.jpf.utils.JpfDateTimeUtil;
 import org.jpf.utils.cvsutil.JpfCvsUtil;
 import org.jpf.utils.ios.AiFileUtil;
 import org.jpf.utils.logUtil.TextAreaLogAppender;
@@ -92,8 +92,8 @@ public class CopyGoods2 extends Thread {
     TextAreaLogAppender.log("处理文件数:" + total_file_count);
     logger.info("处理数据总条数:" + total_good_count);
     TextAreaLogAppender.log("处理数据总条数:" + total_good_count);
-    JpfCvsUtil.appendCsv(strLogFileName, AiDateTimeUtil.getCurrDate() + "\t" + strCvsFilePath + "\t"
-        + total_file_count + "\t" + total_good_count + "\n");
+    JpfCvsUtil.appendCsv(strLogFileName, JpfDateTimeUtil.getCurrDate() + "\t" + strCvsFilePath
+        + "\t" + total_file_count + "\t" + total_good_count + "\n");
   }
 
   /**

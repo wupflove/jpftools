@@ -10,7 +10,7 @@ import java.util.Vector;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jpf.utils.ios.AiFileUtil;
+import org.jpf.utils.ios.JpfFileUtil;
 import org.jpf.utils.xmls.JpfXmlUtil;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -89,7 +89,7 @@ public class ReadCase {
     final String strNodeName = "case_conf";
     CaseInfo cCaseInfo = new CaseInfo();
     Vector<CaseInfo> map = new Vector<CaseInfo>();
-    AiFileUtil.checkFile(strFileName);
+    JpfFileUtil.checkFile(strFileName);
     NodeList n = JpfXmlUtil.getNodeList(strNodeName, strFileName);
     for (int i = 0; i < n.getLength(); i++) {
       Element el = (Element) n.item(0);

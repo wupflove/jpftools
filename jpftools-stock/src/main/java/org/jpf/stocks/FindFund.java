@@ -3,8 +3,8 @@ package org.jpf.stocks;
 import java.io.BufferedReader;
 
 import org.jpf.stocks.util.StockUtil;
-import org.jpf.utils.conf.AiConfigUtil;
-import org.jpf.utils.excelutils.AiExcelJxlUtil;
+import org.jpf.utils.conf.JpfConfigUtil;
+import org.jpf.utils.excelutils.JpfExcelJxlUtil;
 
 /**
  *
@@ -25,12 +25,13 @@ import org.jpf.utils.excelutils.AiExcelJxlUtil;
  * @version 1.0
  */
 public class FindFund extends StockBaseClass {
+  private String strConfigName = "";
 
   public FindFund() {
     try {
-      g_BeginStr = AiConfigUtil.GetConfigString("KEYSTR_FUND_BEGIN");
-      g_EndStr = AiConfigUtil.GetConfigString("KEYSTR_FUND_END");
-      g_KeyStr = AiConfigUtil.GetConfigString("KEYSTR_FUND_KEY");
+      g_BeginStr = JpfConfigUtil.getStrFromConfig(strConfigName, "KEYSTR_FUND_BEGIN");
+      g_EndStr = JpfConfigUtil.getStrFromConfig(strConfigName, "KEYSTR_FUND_END");
+      g_KeyStr = JpfConfigUtil.getStrFromConfig(strConfigName, "KEYSTR_FUND_KEY");
     } catch (Exception e) {
       // TODO: handle exception
       e.printStackTrace();
@@ -100,11 +101,11 @@ public class FindFund extends StockBaseClass {
           if (!m_ColName1.equalsIgnoreCase("--") || !m_ColName2.equalsIgnoreCase("--")
               || !m_ColName2.equalsIgnoreCase("--")) {
             iRow++;
-            AiExcelJxlUtil.addCell(ws, 0, iRow, m_StockName);
-            AiExcelJxlUtil.addCell(ws, 1, iRow, m_StockCode);
-            AiExcelJxlUtil.addCell(ws, 2, iRow, m_ColName1);
-            AiExcelJxlUtil.addCell(ws, 3, iRow, m_ColName2);
-            AiExcelJxlUtil.addCell(ws, 4, iRow, m_ColName3);
+            JpfExcelJxlUtil.addCell(ws, 0, iRow, m_StockName);
+            JpfExcelJxlUtil.addCell(ws, 1, iRow, m_StockCode);
+            JpfExcelJxlUtil.addCell(ws, 2, iRow, m_ColName1);
+            JpfExcelJxlUtil.addCell(ws, 3, iRow, m_ColName2);
+            JpfExcelJxlUtil.addCell(ws, 4, iRow, m_ColName3);
           }
         }
         m_ColName1 = "";
@@ -117,11 +118,11 @@ public class FindFund extends StockBaseClass {
       if (!m_ColName1.equalsIgnoreCase("--") || !m_ColName2.equalsIgnoreCase("--")
           || !m_ColName2.equalsIgnoreCase("--")) {
         iRow++;
-        AiExcelJxlUtil.addCell(ws, 0, iRow, m_StockName);
-        AiExcelJxlUtil.addCell(ws, 1, iRow, m_StockCode);
-        AiExcelJxlUtil.addCell(ws, 2, iRow, m_ColName1);
-        AiExcelJxlUtil.addCell(ws, 3, iRow, m_ColName2);
-        AiExcelJxlUtil.addCell(ws, 4, iRow, m_ColName3);
+        JpfExcelJxlUtil.addCell(ws, 0, iRow, m_StockName);
+        JpfExcelJxlUtil.addCell(ws, 1, iRow, m_StockCode);
+        JpfExcelJxlUtil.addCell(ws, 2, iRow, m_ColName1);
+        JpfExcelJxlUtil.addCell(ws, 3, iRow, m_ColName2);
+        JpfExcelJxlUtil.addCell(ws, 4, iRow, m_ColName3);
       }
     }
 

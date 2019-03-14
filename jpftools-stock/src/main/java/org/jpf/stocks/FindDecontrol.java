@@ -4,8 +4,8 @@ package org.jpf.stocks;
 import java.io.BufferedReader;
 
 import org.jpf.stocks.util.StockUtil;
-import org.jpf.utils.conf.AiConfigUtil;
-import org.jpf.utils.excelutils.AiExcelJxlUtil;
+import org.jpf.utils.conf.JpfConfigUtil;
+import org.jpf.utils.excelutils.JpfExcelJxlUtil;
 
 /**
  *
@@ -26,11 +26,14 @@ import org.jpf.utils.excelutils.AiExcelJxlUtil;
  * @version 1.0
  */
 public class FindDecontrol extends StockBaseClass {
+
+  private String strConfigName = "";
+
   public FindDecontrol() {
     try {
-      g_BeginStr = AiConfigUtil.GetConfigString("BEGINSTR_KEY");
-      g_EndStr = AiConfigUtil.GetConfigString("ENDSTR_KEY");
-      g_MonthStr = AiConfigUtil.GetConfigString("MONTH_KEY");
+      g_BeginStr = JpfConfigUtil.getStrFromConfig(strConfigName, "BEGINSTR_KEY");
+      g_EndStr = JpfConfigUtil.getStrFromConfig(strConfigName, "ENDSTR_KEY");
+      g_MonthStr = JpfConfigUtil.getStrFromConfig(strConfigName, "MONTH_KEY");
 
     } catch (Exception e) {
       // TODO: handle exception
@@ -91,10 +94,10 @@ public class FindDecontrol extends StockBaseClass {
         System.out.println(StockUtil.GetStockCode(Line));
         if (m_StockCount > 0) {
           iRow++;
-          AiExcelJxlUtil.addCell(ws, 0, iRow, m_StockName);
-          AiExcelJxlUtil.addCell(ws, 1, iRow, m_StockCode);
-          AiExcelJxlUtil.addCell(ws, 2, iRow, m_StockDate);
-          AiExcelJxlUtil.addCell(ws, 3, iRow, String.valueOf(m_StockCount));
+          JpfExcelJxlUtil.addCell(ws, 0, iRow, m_StockName);
+          JpfExcelJxlUtil.addCell(ws, 1, iRow, m_StockCode);
+          JpfExcelJxlUtil.addCell(ws, 2, iRow, m_StockDate);
+          JpfExcelJxlUtil.addCell(ws, 3, iRow, String.valueOf(m_StockCount));
           m_StockCount = 0;
 
         }

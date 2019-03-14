@@ -3,8 +3,9 @@ package org.jpf.stocks;
 import java.io.BufferedReader;
 
 import org.jpf.stocks.util.StockUtil;
-import org.jpf.utils.conf.AiConfigUtil;
-import org.jpf.utils.excelutils.AiExcelJxlUtil;
+import org.jpf.utils.conf.JpfConfigUtil;
+import org.jpf.utils.excelutils.JpfExcelJxlUtil;
+
 
 
 /**
@@ -26,11 +27,13 @@ import org.jpf.utils.excelutils.AiExcelJxlUtil;
  * @version 1.0
  */
 public class FindReview extends StockBaseClass {
+  private String strConfigName = "";
+
   public FindReview() {
     try {
-      g_BeginStr = AiConfigUtil.GetConfigString("KEYSTR_REVIEW_BEGIN");
-      g_EndStr = AiConfigUtil.GetConfigString("KEYSTR_REVIEW_END");
-      EXECL_REVIEW_COLS = AiConfigUtil.GetConfigString("EXECL_REVIEW_COLS");
+      g_BeginStr = JpfConfigUtil.getStrFromConfig(strConfigName, "KEYSTR_REVIEW_BEGIN");
+      g_EndStr = JpfConfigUtil.getStrFromConfig(strConfigName, "KEYSTR_REVIEW_END");
+      EXECL_REVIEW_COLS = JpfConfigUtil.getStrFromConfig(strConfigName, "EXECL_REVIEW_COLS");
 
       DoWork();
     } catch (Exception e) {
@@ -104,7 +107,7 @@ public class FindReview extends StockBaseClass {
           m_Cols = "";
           System.out.println(m_StockCode + ":错误");
         }
-        AiExcelJxlUtil.addRow(ws, iRow / 2, m_StockName + ";" + m_StockCode + m_Cols);
+        JpfExcelJxlUtil.addRow(ws, iRow / 2, m_StockName + ";" + m_StockCode + m_Cols);
 
       } else {
         // 股票代码和名称

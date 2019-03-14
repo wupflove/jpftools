@@ -1,4 +1,4 @@
-package org.jpf.apptool.filetool;
+package org.jpf.jpftool.filetool;
 
 import java.io.*;
 import java.util.*;

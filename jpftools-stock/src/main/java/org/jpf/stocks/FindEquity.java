@@ -3,8 +3,8 @@ package org.jpf.stocks;
 import java.io.BufferedReader;
 
 import org.jpf.stocks.util.StockUtil;
-import org.jpf.utils.conf.AiConfigUtil;
-import org.jpf.utils.excelutils.AiExcelJxlUtil;
+import org.jpf.utils.conf.JpfConfigUtil;
+import org.jpf.utils.excelutils.JpfExcelJxlUtil;
 
 /**
  *
@@ -28,10 +28,12 @@ import org.jpf.utils.excelutils.AiExcelJxlUtil;
  * @version 1.0
  */
 public class FindEquity extends StockBaseClass {
+  private String strConfigName = "";
+
   public FindEquity() {
     try {
-      g_BeginStr = AiConfigUtil.GetConfigString("KEYSTR_EQUITY_BEGIN");
-      g_EndStr = AiConfigUtil.GetConfigString("KEYSTR_EQUITY_END");
+      g_BeginStr = JpfConfigUtil.getStrFromConfig(strConfigName, "KEYSTR_EQUITY_BEGIN");
+      g_EndStr = JpfConfigUtil.getStrFromConfig(strConfigName, "KEYSTR_EQUITY_END");
     } catch (Exception e) {
       // TODO: handle exception
       e.printStackTrace();
@@ -76,7 +78,7 @@ public class FindEquity extends StockBaseClass {
 
           m_Cols = ";" + m_strs[1].trim();
         }
-        AiExcelJxlUtil.addRow(ws, iRow / 2, m_StockName + ";" + m_StockCode + m_Cols);
+        JpfExcelJxlUtil.addRow(ws, iRow / 2, m_StockName + ";" + m_StockCode + m_Cols);
       } else {
         // 股票代码和名称
         m_StockName = StockUtil.GetStockName(Line);

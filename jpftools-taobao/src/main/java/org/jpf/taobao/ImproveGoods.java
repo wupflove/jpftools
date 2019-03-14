@@ -15,9 +15,8 @@ import java.util.Vector;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jpf.utils.AiDateTimeUtil;
-import org.jpf.utils.cvsutil.JpfCvsUtil;
-import org.jpf.utils.ios.AiFileUtil;
+import org.jpf.utils.JpfDateTimeUtil;
+import org.jpf.utils.ios.JpfFileUtil;
 import org.jpf.utils.logUtil.TextAreaLogAppender;
 
 import com.opencsv.CSVReader;
@@ -140,10 +139,10 @@ public class ImproveGoods {
       }
 
 
-      JpfCvsUtil.writeToCsv(strCvsName, vStrings);
+      JpfFileUtil.writeToCsv(strCvsName, vStrings);
 
-      JpfCvsUtil.appendCsv("zgb_goods.csv", AiDateTimeUtil.getCurrDate() + "\t" + strCvsName + "\t"
-          + vStrings.size() + "\t" + strOldPrice + "\n");
+      JpfFileUtil.appendCsv("zgb_goods.csv", JpfDateTimeUtil.getCurrDate() + "\t" + strCvsName
+          + "\t" + vStrings.size() + "\t" + strOldPrice + "\n");
       vStrings.clear();
 
     } catch (Exception ex) {
@@ -261,7 +260,7 @@ public class ImproveGoods {
     for (int i = 0; i < cMainPicInfo.v_MainPic.size(); i++) {
       // 新主图文件名
       String strNewFileName = RandomUtil.getRandomLowerStringInt(30);
-      AiFileUtil.copyFile(strDescPicPath + "\\" + strNewFileName + ".tbi",
+      JpfFileUtil.copyFile(strDescPicPath + "\\" + strNewFileName + ".tbi",
           cMainPicInfo.v_MainPic.get(i));
       cMainPicInfo.v_MainPic.set(i, strNewFileName);
       logger.debug(strNewFileName);
@@ -306,7 +305,7 @@ public class ImproveGoods {
   public void selectPicBySize(final String strPicPath, Vector<String> vector) {
     try {
 
-      AiFileUtil.getFiles(strPicPath, vector, ".jpg");
+      JpfFileUtil.getFiles(strPicPath, vector, ".jpg");
       // logger.info(vector.size());
       for (int i = 0; i < vector.size(); i++) {
         String strPicFileName = vector.get(i);
@@ -408,13 +407,13 @@ public class ImproveGoods {
   public void cutPic(String strMainPicPath) throws Exception {
 
     Vector<String> v_tbi = new Vector<String>();
-    AiFileUtil.getFiles(strMainPicPath, v_tbi, ".tbi");
+    JpfFileUtil.getFiles(strMainPicPath, v_tbi, ".tbi");
     logger.info("主图数量:" + v_tbi.size());
     TextAreaLogAppender.log("主图数量:" + v_tbi.size());
     for (int i = 0; i < v_tbi.size(); i++) {
       String tbiImg = v_tbi.get(i);
-      if (AiFileUtil.getFileSize(tbiImg) == 0) {
-        AiFileUtil.delFile(tbiImg);
+      if (JpfFileUtil.getFileSize(tbiImg) == 0) {
+        JpfFileUtil.delFile(tbiImg);
         continue;
       }
 
@@ -428,13 +427,13 @@ public class ImproveGoods {
 
     // 描述图修改
     v_tbi.clear();
-    AiFileUtil.getFiles(strMainPicPath, v_tbi, ".jpg");
+    JpfFileUtil.getFiles(strMainPicPath, v_tbi, ".jpg");
     logger.info("描述图数量:" + v_tbi.size());
     TextAreaLogAppender.log("描述图数量:" + v_tbi.size());
     for (int i = 0; i < v_tbi.size(); i++) {
       String tbiImg = v_tbi.get(i);
-      if (AiFileUtil.getFileSize(tbiImg) == 0) {
-        AiFileUtil.delFile(tbiImg);
+      if (JpfFileUtil.getFileSize(tbiImg) == 0) {
+        JpfFileUtil.delFile(tbiImg);
         continue;
       }
 

@@ -24,9 +24,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.jpf.utils.AiDateTimeUtil;
-import org.jpf.utils.cvsutil.JpfCvsUtil;
-import org.jpf.utils.ios.AiFileUtil;
+import org.jpf.utils.JpfDateTimeUtil;
+import org.jpf.utils.ios.JpfFileUtil;
 import org.jpf.utils.logUtil.TextAreaLogAppender;
 
 /**
@@ -92,8 +91,8 @@ public class CopyGoods2 extends Thread {
     TextAreaLogAppender.log("处理文件数:" + total_file_count);
     logger.info("处理数据总条数:" + total_good_count);
     TextAreaLogAppender.log("处理数据总条数:" + total_good_count);
-    JpfCvsUtil.appendCsv(strLogFileName, AiDateTimeUtil.getCurrDate() + "\t" + strCvsFilePath + "\t"
-        + total_file_count + "\t" + total_good_count + "\n");
+    JpfFileUtil.appendCsv(strLogFileName, JpfDateTimeUtil.getCurrDate() + "\t" + strCvsFilePath
+        + "\t" + total_file_count + "\t" + total_good_count + "\n");
   }
 
   /**
@@ -114,27 +113,27 @@ public class CopyGoods2 extends Thread {
   public void doWork() {
     try {
       // 清空目标目录
-      AiFileUtil.delDirWithFiles(OUTPUT_PATH);
+      JpfFileUtil.delDirWithFiles(OUTPUT_PATH);
 
       strConstPicPath = "D:\\" + getOutPutLastPath();
       Vector<String> vector = new Vector<String>();
-      AiFileUtil.getFiles(strCvsFilePath, vector, ".csv");
+      JpfFileUtil.getFiles(strCvsFilePath, vector, ".csv");
       for (int i = 0; i < vector.size(); i++) {
         String strCvsFileName = vector.get(i);
         // 保存商品名称，查找重复
         Vector<String> vTitles = new Vector<String>();
         logger.info(strCvsFileName);
         TextAreaLogAppender.log(strCvsFileName);
-        String strXlsFileName = AiFileUtil.getFileName(strCvsFileName);
+        String strXlsFileName = JpfFileUtil.getFileName(strCvsFileName);
 
         // 检查商品下是否存在media目录，删除
         TaoBaoUtils.removeMediaPath(strCvsFileName, "media");
 
-        strXlsFilePath = AiFileUtil.getFilePath(strCvsFileName);
+        strXlsFilePath = JpfFileUtil.getFilePath(strCvsFileName);
         String strXlsPathFileName = strCvsFileName.replace(".csv", ".xlsx");
-        if (AiFileUtil.FileExist(strXlsPathFileName)) {
+        if (JpfFileUtil.FileExist(strXlsPathFileName)) {
           getTitles(vTitles, strXlsPathFileName);
-        } else if (AiFileUtil.FileExist(strCvsFileName.replace(".csv", ".xls"))) {
+        } else if (JpfFileUtil.FileExist(strCvsFileName.replace(".csv", ".xls"))) {
           strXlsPathFileName = strCvsFileName.replace(".csv", ".xls");
           getTitles(vTitles, strXlsPathFileName);
         } else {
@@ -386,7 +385,7 @@ public class CopyGoods2 extends Thread {
     String strShopDir = OUTPUT_PATH + "\\";
     logger.debug(strShopDir);
     Vector<String> vector = new Vector<String>();
-    AiFileUtil.getFiles(strShopDir, vector, ".csv");
+    JpfFileUtil.getFiles(strShopDir, vector, ".csv");
     for (int i = 0; i < vector.size(); i++) {
       String strCvsFileName = vector.get(i);
       logger.info("提升处理:" + strCvsFileName);
@@ -441,9 +440,9 @@ public class CopyGoods2 extends Thread {
    */
   private void writeToCsv(String strCvsName, StringBuilder sb, int iShopNumber) throws Exception {
     String strNewCvsName =
-        MakeOutPutDir(strCvsName, iShopNumber) + AiFileUtil.getFileName(strCvsName);
+        MakeOutPutDir(strCvsName, iShopNumber) + JpfFileUtil.getFileName(strCvsName);
     // logger.info(strNewCvsName);
-    JpfCvsUtil.writeToCsv(strNewCvsName, sb);
+    JpfFileUtil.writeToCsv(strNewCvsName, sb);
 
   }
 
@@ -527,17 +526,17 @@ public class CopyGoods2 extends Thread {
   public String MakeOutPutDir(String strCvsFileName, int iShopNumber) throws Exception {
     try {
       // 创建目标
-      String sourceDir = AiFileUtil.getFilePath(strCvsFileName);
-      String sourceFileName = AiFileUtil.getFileName(strCvsFileName);
+      String sourceDir = JpfFileUtil.getFilePath(strCvsFileName);
+      String sourceFileName = JpfFileUtil.getFileName(strCvsFileName);
       sourceFileName = sourceFileName.substring(0, sourceFileName.length() - 4);
       int iPos = sourceDir.lastIndexOf("\\");
       sourceDir = sourceDir.substring(iPos + 1, sourceDir.length());
       // 复制图片目录
       String strShopDir =
           OUTPUT_PATH + "\\" + iShopNumber + "\\" + sourceDir + "\\" + sourceFileName;
-      AiFileUtil.mkdir(strShopDir);
+      JpfFileUtil.mkdir(strShopDir);
       String strSourceDir = strCvsFileName.substring(0, strCvsFileName.length() - 4);
-      AiFileUtil.copyDir(strSourceDir, strShopDir);
+      JpfFileUtil.copyDir(strSourceDir, strShopDir);
 
       // 返回处理后的CSV文件目录
       return OUTPUT_PATH + "\\" + iShopNumber + "\\" + sourceDir + "\\";

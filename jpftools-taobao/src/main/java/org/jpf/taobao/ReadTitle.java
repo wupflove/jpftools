@@ -13,9 +13,8 @@ import java.util.Vector;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jpf.utils.cvsutil.JpfCvsUtil;
 import org.jpf.utils.excelutils.WriteExcel;
-import org.jpf.utils.ios.AiFileUtil;
+import org.jpf.utils.ios.JpfFileUtil;
 
 import com.opencsv.CSVReader;
 
@@ -33,7 +32,7 @@ public class ReadTitle {
     // TODO Auto-generated constructor stub
     try {
       Vector<String> vFiles = new Vector<String>();
-      AiFileUtil.getFiles("D:\\zgb\\原始文件\\川川\\新建文件夹", vFiles, ".csv");
+      JpfFileUtil.getFiles("D:\\zgb\\原始文件\\川川\\新建文件夹", vFiles, ".csv");
       for (int i = 0; i < vFiles.size(); i++) {
         readTitleFromCSV(vFiles.get(i));
       }
@@ -90,7 +89,7 @@ public class ReadTitle {
         iRow++;
       }
       logger.info(vTitles.size());
-      JpfCvsUtil.writeToCsv(strCvsFileName, vCSV);
+      JpfFileUtil.writeToCsv(strCvsFileName, vCSV);
       // TaoBaoUtils.writeToCsv(strCvsName, vStrings);
       String finalXlsxPath = strCvsFileName.replace("csv", "xls");
       logger.info(finalXlsxPath);

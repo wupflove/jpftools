@@ -1,6 +1,6 @@
 package org.jpf.stocks;
 
-import org.jpf.utils.conf.AiConfigUtil;
+import org.jpf.utils.conf.JpfConfigUtil;
 
 /**
  *
@@ -21,9 +21,11 @@ import org.jpf.utils.conf.AiConfigUtil;
  * @version 1.0
  */
 public class StockWork {
+  private String strConfigName = "";
+
   public StockWork() {
     try {
-      String sWorkType = AiConfigUtil.GetConfigString("WORKINGTYPE");
+      String sWorkType = JpfConfigUtil.getStrFromConfig(strConfigName, "WORKINGTYPE");
       String[] sWorkTypes = sWorkType.split(",");
       if (sWorkTypes == null) {
         System.out.println("没有配置工作类型");

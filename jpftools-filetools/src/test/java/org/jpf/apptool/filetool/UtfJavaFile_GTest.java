@@ -3,6 +3,8 @@ package org.jpf.apptool.filetool;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+import org.jpf.jpftool.filetool.UtfJavaFile;
+
 /**
  * The class <code>UtfJavaFile_GTest</code> contains tests for the class <code>{@link UtfJavaFile}</code>.
  *

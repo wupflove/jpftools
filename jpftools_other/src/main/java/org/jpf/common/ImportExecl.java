@@ -10,10 +10,10 @@ import java.sql.SQLException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jpf.utils.dbsql.AiDBUtil;
 import org.jpf.utils.dbsql.AppConn;
-import org.jpf.utils.excelutils.AiExcelJxlUtil;
-import org.jpf.utils.ios.AiFileUtil;
+import org.jpf.utils.dbsql.JpfDBUtil;
+import org.jpf.utils.excelutils.JpfExcelJxlUtil;
+import org.jpf.utils.ios.JpfFileUtil;
 import org.jpf.utils.xmls.JpfXmlUtil;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -45,7 +45,7 @@ public class ImportExecl {
    */
   private ImportExecl(String strImportFileName, String strNodeName) throws Exception {
 
-    AiFileUtil.checkFile(DB_CONFIG_XML);
+    JpfFileUtil.checkFile(DB_CONFIG_XML);
     NodeList n = JpfXmlUtil.getNodeList(strNodeName, DB_CONFIG_XML);
     if (1 == n.getLength()) {
       Element el = (Element) n.item(0);
@@ -97,8 +97,8 @@ public class ImportExecl {
             logger.info("all rows=" + sheet.getRows());
           }
 
-          if (AiExcelJxlUtil.isRowNull(sheet, START_ROW)
-              && AiExcelJxlUtil.isRowNull(sheet, START_ROW + 1)) {
+          if (JpfExcelJxlUtil.isRowNull(sheet, START_ROW)
+              && JpfExcelJxlUtil.isRowNull(sheet, START_ROW + 1)) {
             break;
 
           }
@@ -108,7 +108,7 @@ public class ImportExecl {
 
           for (int i = START_ROW; i < sheet.getRows(); i++) {
             try {
-              if (AiExcelJxlUtil.isRowNull(sheet, i) && AiExcelJxlUtil.isRowNull(sheet, i + 1)) {
+              if (JpfExcelJxlUtil.isRowNull(sheet, i) && JpfExcelJxlUtil.isRowNull(sheet, i + 1)) {
                 break;
               }
               int j;
@@ -157,8 +157,8 @@ public class ImportExecl {
       logger.info(exp);
       throw exp;
     } finally {
-      AiDBUtil.doClear(conn);
-      AiExcelJxlUtil.close(rwb);
+      JpfDBUtil.doClear(conn);
+      JpfExcelJxlUtil.close(rwb);
     }
     return "Total Record Count:" + m_rowcount + ";Sucess Record Count:" + m_succcount;
   }

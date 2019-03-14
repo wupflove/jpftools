@@ -3,8 +3,9 @@ package org.jpf.stocks;
 import java.io.BufferedReader;
 
 import org.jpf.stocks.util.StockUtil;
-import org.jpf.utils.conf.AiConfigUtil;
-import org.jpf.utils.excelutils.AiExcelJxlUtil;
+import org.jpf.utils.conf.JpfConfigUtil;
+import org.jpf.utils.excelutils.JpfExcelJxlUtil;
+
 
 /**
  *
@@ -29,11 +30,12 @@ public class FindIssuePrice extends StockBaseClass {
 
   // 关键字:发行价格
   private String g_KeyFindStr;
+  private String strConfigName = "";
 
   public FindIssuePrice() {
 
     try {
-      g_KeyFindStr = AiConfigUtil.GetConfigString("KEYSTR_ISSUEPRICE");
+      g_KeyFindStr = JpfConfigUtil.getStrFromConfig(strConfigName, "KEYSTR_ISSUEPRICE");
     } catch (Exception e) {
       // TODO: handle exception
       e.printStackTrace();
@@ -77,7 +79,7 @@ public class FindIssuePrice extends StockBaseClass {
         } else {
           m_Cols = ";" + m_strs[4].trim();
         }
-        AiExcelJxlUtil.addRow(ws, iRow / 2, m_StockName + ";" + m_StockCode + m_Cols);
+        JpfExcelJxlUtil.addRow(ws, iRow / 2, m_StockName + ";" + m_StockCode + m_Cols);
       } else {
         // 股票代码和名称
         m_StockName = StockUtil.GetStockName(Line);

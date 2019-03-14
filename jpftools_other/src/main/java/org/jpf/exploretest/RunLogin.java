@@ -25,7 +25,7 @@ import org.apache.http.protocol.ExecutionContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jpf.utils.ios.AiFileUtil;
+import org.jpf.utils.ios.JpfFileUtil;
 import org.jpf.utils.xmls.JpfXmlUtil;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -52,7 +52,7 @@ public class RunLogin {
 
   public boolean LoginRun() {
     try {
-      AiFileUtil.checkFile(LOGIN_XML);
+      JpfFileUtil.checkFile(LOGIN_XML);
 
       NodeList n = JpfXmlUtil.getNodeList(strNodeName, LOGIN_XML);
 

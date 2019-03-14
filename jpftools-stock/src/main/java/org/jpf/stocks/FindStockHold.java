@@ -3,8 +3,9 @@ package org.jpf.stocks;
 import java.io.BufferedReader;
 
 import org.jpf.stocks.util.StockUtil;
-import org.jpf.utils.conf.AiConfigUtil;
-import org.jpf.utils.excelutils.AiExcelJxlUtil;
+import org.jpf.utils.conf.JpfConfigUtil;
+import org.jpf.utils.excelutils.JpfExcelJxlUtil;
+
 
 /**
  *
@@ -26,11 +27,12 @@ import org.jpf.utils.excelutils.AiExcelJxlUtil;
  */
 public class FindStockHold extends StockBaseClass {
   private String g_BeginStr;
+  private String strConfigName = "";
 
   public FindStockHold() {
 
     try {
-      g_BeginStr = AiConfigUtil.GetConfigString("KEYSTR_HOLD_BEGIN");
+      g_BeginStr = JpfConfigUtil.getStrFromConfig(strConfigName, "KEYSTR_HOLD_BEGIN");
     } catch (Exception e) {
       // TODO: handle exception
       e.printStackTrace();
@@ -85,7 +87,7 @@ public class FindStockHold extends StockBaseClass {
           m_Cols = "";
           System.out.println(m_StockCode + ":错误");
         }
-        AiExcelJxlUtil.addRow(ws, iRow / 2, m_StockName + ";" + m_StockCode + m_Cols);
+        JpfExcelJxlUtil.addRow(ws, iRow / 2, m_StockName + ";" + m_StockCode + m_Cols);
 
       } else {
         // 股票代码和名称

@@ -1,44 +1,51 @@
-package org.jpf.apptool.filetool;
+/** 
+* @author 吴平福 
+* E-mail:wupf@asiainfo-linkage.com 
+* @version 创建时间：2014年4月16日 下午4:27:18 
+* 类说明 
+*/ 
+
+package org.jpf.jpftool.filetool;
 
 import java.io.*;
 import java.util.*;
 
 /**
- * <p>�ļ�����</p>
+ * <p>文件翻译</p>
  * <p>Title: </p>
  * <p>Description: </p>
  * <p>Copyright: Copyright (c) 2006</p>
  * <p>Company: </p>
- * @author ��ƽ��
+ * @author 吴平福
  * @version 1.0
  */
 
-public class UtfFile
+public class AiUtfFile
 {
-  //������ļ���Ŀ
+  //处理的文件数目
   private static long FileWriteCount = 0;
 
-  //��ȡ�ļ�Ŀ¼�µ��ļ��б�
+  //读取文件目录下的文件列表
   private Vector g_Vector = new Vector();
 
-  //д��������ļ�
+  //写入的配置文件
   private String OutPropFileName = "d://sh.properties";
 
-  //��ȡ�ļ���Ŀ¼
+  //读取文件的目录
   private String InFilePath = "C://temp//aa";
 
-  //�Ѿ����ڵ������ļ�
+  //已经存在的配置文件
   private String ExistPropFileName = "d://WBASSLANG_zh_CN.properties";
 
-  //������ʹ�õ����
+  //配置中使用的序号
   private static int PropNum = 0;
 
-  //д���õĻ���
+  //写配置的缓存
   StringBuffer propBuf = new StringBuffer();
-  //����������
+  //读出的中文
   private Vector v_China = new Vector();
 
-  //�ų����ļ�
+  //排除的文件
   private String PreclusiveFileName = "BO";
 
   //
@@ -59,7 +66,7 @@ public class UtfFile
   }
 
   /**
-   * @todo ȡҪ�г���PROP��KEYֵ����d://aa//bb//cc.txt ,KEYֵ bb_cc_
+   * @todo 取要列出的PROP的KEY值。如d://aa//bb//cc.txt ,KEY值 bb_cc_
    * @param in_FullPathName String
    * @throws Exception
    * @return String
@@ -82,7 +89,7 @@ public class UtfFile
   }
 
   /**
-   * @todo ����ת��ΪUTF-8
+   * @todo 中文转换为UTF-8
    * @param s String
    * @return String
    */
@@ -99,7 +106,7 @@ public class UtfFile
 
   }
 
-  public UtfFile(int i)
+  public AiUtfFile(int i)
       throws Exception
   {
     //ReplaceStr("if(rowset.getRow()!=-1) {");
@@ -119,20 +126,20 @@ public class UtfFile
   /**
    *
    */
-  public UtfFile()
+  public AiUtfFile()
   {
     try
     {
-      System.out.println("����ļ�...");
+      System.out.println("检查文件...");
       long sTime = System.currentTimeMillis();
       init();
       ListFile(InFilePath);
       UftFile();
-      System.out.println("�ļ�����" + g_Vector.size());
-      System.out.println("д���ļ�����" + FileWriteCount);
+      System.out.println("文件总数" + g_Vector.size());
+      System.out.println("写入文件行数" + FileWriteCount);
 
       long eTime = System.currentTimeMillis();
-      System.out.println("�����ļ���ʱ(��λMS):" + (eTime - sTime));
+      System.out.println("处理文件用时(单位MS):" + (eTime - sTime));
     }
     catch (Exception ex)
     {
@@ -142,7 +149,7 @@ public class UtfFile
   }
 
   /**
-   * @todo ��ʼ��
+   * @todo 初始化
    * @throws Exception
    */
   private void init()
@@ -150,14 +157,14 @@ public class UtfFile
   {
 
     //v_China
-    System.out.println("���ļ�:" + ExistPropFileName);
+    System.out.println("打开文件:" + ExistPropFileName);
     File f1 = new File(ExistPropFileName);
     if (!f1.exists() && !f1.canRead())
     {
-      System.out.println("�ļ�û���ҵ�");
+      System.out.println("文件没有找到");
       return;
     }
-    BufferedReader in = new BufferedReader(new FileReader(ExistPropFileName)); //����BufferedReader���󣬲�ʵ����Ϊbr
+    BufferedReader in = new BufferedReader(new FileReader(ExistPropFileName)); //建立BufferedReader对象，并实例化为br
     String Line;
     String m_str = "";
     while ( (Line = in.readLine()) != null)
@@ -191,7 +198,7 @@ public class UtfFile
   }
 
   /**
-   * @todo �����ļ�
+   * @todo 查找文件
    * @param in_FilePath String
    */
   private void ListFile(String in_FilePath)
@@ -219,11 +226,11 @@ public class UtfFile
   }
 
   /**
-   * �õ�·���ָ������ļ�·����ָ��λ��ǰ�����ֵ�λ�á�
-   * ����DOS����UNIX���ķָ��������ԡ�
-   * @param fileName �ļ�·��
-   * @param fromIndex ��ʼ���ҵ�λ��
-   * @return ·���ָ�����·����ָ��λ��ǰ�����ֵ�λ�ã�û�г���ʱ����-1��
+   * 得到路径分隔符在文件路径中指定位置前最后出现的位置。
+   * 对于DOS或者UNIX风格的分隔符都可以。
+   * @param fileName 文件路径
+   * @param fromIndex 开始查找的位置
+   * @return 路径分隔符在路径中指定位置前最后出现的位置，没有出现时返回-1。
    * @since  0.5
    */
   public static int getPathLastIndex(String fileName, int fromIndex)
@@ -237,10 +244,10 @@ public class UtfFile
   }
 
   /**
-   * �õ�·���ָ������ļ�·���������ֵ�λ�á�
-   * ����DOS����UNIX���ķָ��������ԡ�
-   * @param fileName �ļ�·��
-   * @return ·���ָ�����·���������ֵ�λ�ã�û�г���ʱ����-1��
+   * 得到路径分隔符在文件路径中最后出现的位置。
+   * 对于DOS或者UNIX风格的分隔符都可以。
+   * @param fileName 文件路径
+   * @return 路径分隔符在路径中最后出现的位置，没有出现时返回-1。
    * @since  0.5
    */
   public static int getPathLastIndex(String fileName)
@@ -254,10 +261,10 @@ public class UtfFile
   }
 
   /**
-   * �õ��ļ������ֲ��֡�
-   * ʵ���Ͼ���·���е����һ��·���ָ�����Ĳ��֡�
-   * @param fileName �ļ���
-   * @return �ļ����е����ֲ���
+   * 得到文件的名字部分。
+   * 实际上就是路径中的最后一个路径分隔符后的部分。
+   * @param fileName 文件名
+   * @return 文件名中的名字部分
    * @since  0.5
    */
   public static String getNamePart(String fileName)
@@ -294,7 +301,7 @@ public class UtfFile
   }
 
   /**
-   * @todo ȡ�ļ������������ļ�����
+   * @todo 取文件名，不包含文件类型
    * @param fileName String
    * @return String
    */
@@ -310,7 +317,7 @@ public class UtfFile
   }
 
   /**
-   * @todo д���ļ�
+   * @todo 写入文件
    * @param in_FileName String
    * @return long
    */
@@ -322,14 +329,14 @@ public class UtfFile
     for (int i = 0; i < g_Vector.size(); i++)
     {
       in_FileName = (String)g_Vector.get(i);
-      System.out.println("���ļ�:" + in_FileName);
+      System.out.println("打开文件:" + in_FileName);
       File f1 = new File(in_FileName);
       if (!f1.exists() && !f1.canRead())
       {
-        System.out.println("�ļ�û���ҵ�");
+        System.out.println("文件没有找到");
         continue;
       }
-      BufferedReader in = new BufferedReader(new FileReader(in_FileName)); //����BufferedReader���󣬲�ʵ����Ϊbr
+      BufferedReader in = new BufferedReader(new FileReader(in_FileName)); //建立BufferedReader对象，并实例化为br
       StringBuffer sb = new StringBuffer();
       String Line;
       PropKeyOfFile = GetPropKeyName(in_FileName);
@@ -341,7 +348,7 @@ public class UtfFile
       while ( (Line = in.readLine()) != null)
       {
         FileWriteCount++;
-        //�ж��ǲ���ע����
+        //判断是不是注释行
         int m = Line.indexOf("//");
         if (m >= 0)
         {
@@ -369,7 +376,7 @@ public class UtfFile
       in.close();
       out.write(sb.toString());
       sb.setLength(0);
-      //�ļ��ر�
+      //文件关闭
       out.close();
       pwOK.close();
       WritePropFile();
@@ -378,7 +385,7 @@ public class UtfFile
   }
 
   /**
-   * @todo ���������ļ�д��properties
+   * @todo 将缓存中文件写入properties
    * @throws Exception
    */
   private void WritePropFile()
@@ -396,7 +403,7 @@ public class UtfFile
   }
 
   /**
-   * @todo �ҵ����Ĳ��滻��ͬʱд��properties
+   * @todo 找到中文并替换，同时写入properties
    * @param str String
    * @throws Exception
    * @return String
@@ -434,7 +441,7 @@ public class UtfFile
           if (PropNum < 0)
           {
             PropNum = v_China.size();
-            //û���ҵ�
+            //没有找到
             propBuf.append("#").append(sb.toString().trim()).append("\r\n")
                 .append(PropKeyOfFile).append(PropNum).
                 append("=")
@@ -461,7 +468,7 @@ public class UtfFile
       if (PropNum < 0)
       {
         PropNum = v_China.size();
-        //û���ҵ�
+        //没有找到
         propBuf.append("#").append(sb.toString().trim()).append("\r\n")
             .append(PropKeyOfFile).append(PropNum).
             append("=")
@@ -483,7 +490,7 @@ public class UtfFile
   }
 
   /**
-   * @todo ȡ�����ڻ����е�λ�á�-1:û���ҵ�,���ڵ���0:�ҵ�
+   * @todo 取中文在缓存中的位置。-1:没有找到,大于等于0:找到
    * @param in_str String
    * @throws Exception
    * @return int
@@ -519,8 +526,8 @@ public class UtfFile
     {
       //String a="aa//bb//";
       //System.out.println(a.replaceAll("//","11"));
-      UtfFile a = new UtfFile();
-
+      //UtfFile a = new UtfFile();
+      System.out.println(toUtf8String("统计结果"));
     }
     catch (Exception ex)
     {

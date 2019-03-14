@@ -10,9 +10,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Vector;
 
-import org.jpf.utils.conf.AiConfigUtil;
-import org.jpf.utils.excelutils.AiExcelJxlUtil;
-import org.jpf.utils.ios.AiFileUtil;
+import org.jpf.utils.conf.JpfConfigUtil;
+import org.jpf.utils.excelutils.JpfExcelJxlUtil;
+import org.jpf.utils.ios.JpfFileUtil;
 
 import jxl.Sheet;
 import jxl.Workbook;
@@ -65,18 +65,20 @@ public class StockBaseClass {
   // #是否要从TEXT到EXCEL，0 不，1 是
   private String ISMAKEEXCELTFILE;
 
+  private String strConfigName = "";
+
   public StockBaseClass() {
     try {
       // 是否要从资料到文件文件
-      ISMAKETEXTFILE = AiConfigUtil.GetConfigString("ISMAKETEXTFILE");
+      ISMAKETEXTFILE = JpfConfigUtil.getStrFromConfig(strConfigName, "ISMAKETEXTFILE");
       // #是否要从TEXT到EXCEL，0 不，1 是
-      ISMAKEEXCELTFILE = AiConfigUtil.GetConfigString("ISMAKEEXCELTFILE");
-      OutStock = AiConfigUtil.GetConfigString("OutStock");
-      InFilePath = AiConfigUtil.GetConfigString("InFilePath");
+      ISMAKEEXCELTFILE = JpfConfigUtil.getStrFromConfig(strConfigName, "ISMAKEEXCELTFILE");
+      OutStock = JpfConfigUtil.getStrFromConfig(strConfigName, "OutStock");
+      InFilePath = JpfConfigUtil.getStrFromConfig(strConfigName, "InFilePath");
 
       // 输出文件名称(带目录)
-      OutTextFileName = AiConfigUtil.GetConfigString("OutTextFileName");
-      OutExeclFileName = AiConfigUtil.GetConfigString("OutExeclFileName");;
+      OutTextFileName = JpfConfigUtil.getStrFromConfig(strConfigName, "OutTextFileName");
+      OutExeclFileName = JpfConfigUtil.getStrFromConfig(strConfigName, "OutExeclFileName");;
     } catch (Exception e) {
       // TODO: handle exception
       e.printStackTrace();
@@ -90,7 +92,7 @@ public class StockBaseClass {
 
       if (ISMAKETEXTFILE.equalsIgnoreCase("1")) {
 
-        AiFileUtil.getFiles(InFilePath, g_FileVector);
+        JpfFileUtil.getFiles(InFilePath, g_FileVector);
         CheckFile();
       }
       if (ISMAKEEXCELTFILE.equalsIgnoreCase("1")) {
@@ -217,7 +219,7 @@ public class StockBaseClass {
    * @throws Exception
    */
   public void AddTitle(WritableSheet m_sheet, String strTitle) throws Exception {
-    AiExcelJxlUtil.addTitle(m_sheet, strTitle);
+    JpfExcelJxlUtil.addTitle(m_sheet, strTitle);
   }
 
   /**

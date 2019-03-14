@@ -3,7 +3,7 @@
  * @version 创建时间：2012-5-9 上午10:12:27 类说明
  */
 
-package org.jpf.apptool.filetool;
+package org.jpf.jpftool.filetool;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,7 +12,7 @@ import java.util.Vector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jpf.utils.encrypts.MD5Filter;
-import org.jpf.utils.ios.AiFileUtil;
+import org.jpf.utils.ios.JpfFileUtil;
 
 
 
@@ -44,7 +44,7 @@ public class FindDupFile {
       long sTime = System.currentTimeMillis();
 
       Vector<String> fileNames = new Vector<String>();
-      AiFileUtil.getFiles(strFilePath, fileNames, fileFilter);
+      JpfFileUtil.getFiles(strFilePath, fileNames, fileFilter);
       logger.info("查找到文件数:" + fileNames.size());
       for (int i = 0; i < fileNames.size(); i++) {
         logger.info(i + ":" + fileNames.get(i));
@@ -57,7 +57,7 @@ public class FindDupFile {
         }
         FileInfo cFileInfo = new FileInfo();
         cFileInfo.FileName = fileNames.get(i);
-        cFileInfo.FileLength = AiFileUtil.FileSize(fileNames.get(i));
+        cFileInfo.FileLength = JpfFileUtil.FileSize(fileNames.get(i));
         cFileInfo.FileMd5 = MD5Filter.getMd5ByFile(fileNames.get(i));
         fileInfos.add(cFileInfo);
 
@@ -65,8 +65,9 @@ public class FindDupFile {
       logger.info("增加文件总数:" + fileInfos.size());
       fileNames.clear();
       Collections.sort(fileInfos, new Comparator<FileInfo>() {
+        @Override
         public int compare(FileInfo f1, FileInfo f2) {
-          long diff = AiFileUtil.FileSize(f1.FileName) - AiFileUtil.FileSize(f2.FileName);
+          long diff = JpfFileUtil.FileSize(f1.FileName) - JpfFileUtil.FileSize(f2.FileName);
           if (diff > 0)
             return 1;
           else if (diff == 0)
@@ -75,6 +76,7 @@ public class FindDupFile {
             return -1;
         }
 
+        @Override
         public boolean equals(Object obj) {
           return true;
         }

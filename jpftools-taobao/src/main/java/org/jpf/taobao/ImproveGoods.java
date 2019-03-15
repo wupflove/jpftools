@@ -15,8 +15,15 @@ import java.util.Vector;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+<<<<<<< .mine
 import org.jpf.utils.JpfDateTimeUtil;
 import org.jpf.utils.ios.JpfFileUtil;
+
+=======
+import org.jpf.utils.JpfDateTimeUtil;
+import org.jpf.utils.cvsutil.JpfCvsUtil;
+import org.jpf.utils.ios.AiFileUtil;
+>>>>>>> .theirs
 import org.jpf.utils.logUtil.TextAreaLogAppender;
 
 import com.opencsv.CSVReader;
@@ -141,8 +148,13 @@ public class ImproveGoods {
 
       JpfFileUtil.writeToCsv(strCvsName, vStrings);
 
+<<<<<<< .mine
       JpfFileUtil.appendCsv("zgb_goods.csv", JpfDateTimeUtil.getCurrDate() + "\t" + strCvsName
           + "\t" + vStrings.size() + "\t" + strOldPrice + "\n");
+=======
+      JpfCvsUtil.appendCsv("zgb_goods.csv", JpfDateTimeUtil.getCurrDate() + "\t" + strCvsName + "\t"
+          + vStrings.size() + "\t" + strOldPrice + "\n");
+>>>>>>> .theirs
       vStrings.clear();
 
     } catch (Exception ex) {

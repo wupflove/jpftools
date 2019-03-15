@@ -15,8 +15,19 @@ import java.util.Vector;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+<<<<<<< .mine
 import org.jpf.utils.JpfDateTimeUtil;
 import org.jpf.utils.ios.JpfFileUtil;
+
+=======
+import org.jpf.utils.JpfDateTimeUtil;
+<<<<<<< HEAD
+import org.jpf.utils.ios.JpfFileUtil;
+=======
+import org.jpf.utils.cvsutil.JpfCvsUtil;
+import org.jpf.utils.ios.AiFileUtil;
+>>>>>>> .theirs
+>>>>>>> 50ef2cf76322bd6b1791e6cc03059365cfbfd439
 import org.jpf.utils.logUtil.TextAreaLogAppender;
 
 import com.opencsv.CSVReader;
@@ -141,8 +152,18 @@ public class ImproveGoods {
 
       JpfFileUtil.writeToCsv(strCvsName, vStrings);
 
+<<<<<<< HEAD
       JpfFileUtil.appendCsv("zgb_goods.csv", JpfDateTimeUtil.getCurrDate() + "\t" + strCvsName
           + "\t" + vStrings.size() + "\t" + strOldPrice + "\n");
+=======
+<<<<<<< .mine
+      JpfFileUtil.appendCsv("zgb_goods.csv", JpfDateTimeUtil.getCurrDate() + "\t" + strCvsName
+          + "\t" + vStrings.size() + "\t" + strOldPrice + "\n");
+=======
+      JpfCvsUtil.appendCsv("zgb_goods.csv", JpfDateTimeUtil.getCurrDate() + "\t" + strCvsName + "\t"
+          + vStrings.size() + "\t" + strOldPrice + "\n");
+>>>>>>> .theirs
+>>>>>>> 50ef2cf76322bd6b1791e6cc03059365cfbfd439
       vStrings.clear();
 
     } catch (Exception ex) {

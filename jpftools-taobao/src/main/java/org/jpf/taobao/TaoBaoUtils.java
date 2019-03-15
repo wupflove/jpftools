@@ -11,9 +11,15 @@ import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+<<<<<<< .mine
 import org.jpf.utils.JpfStringUtil;
 import org.jpf.utils.ios.JpfFileUtil;
 
+=======
+import org.jpf.utils.JpfStringUtil;
+import org.jpf.utils.ios.AiFileUtil;
+
+>>>>>>> .theirs
 /**
  * 
  */
@@ -41,7 +47,15 @@ public class TaoBaoUtils {
         strFileName.substring(0, strFileName.length() - 4) + java.io.File.separator + SpecificPath;
     // logger.debug(strFilePath);
 
+<<<<<<< HEAD
     JpfFileUtil.delDirWithFiles(strFilePath);
+=======
+<<<<<<< .mine
+    JpfFileUtil.delDirWithFiles(strFilePath);
+=======
+    AiFileUtil.delDirWithFiles(strFilePath);
+>>>>>>> .theirs
+>>>>>>> 50ef2cf76322bd6b1791e6cc03059365cfbfd439
 
   }
 
@@ -77,6 +91,7 @@ public class TaoBaoUtils {
     }
     return strCvsFilePath;
 
+<<<<<<< .mine
   }
 
   /**
@@ -100,6 +115,31 @@ public class TaoBaoUtils {
       // logger.error("文件不存在:{}",strOldPicInfo);
       // throw new Exception("文件不存在:"+strOldPicInfo);
       return null;
+=======
+  }
+
+  /**
+   * 
+   * @category @author 吴平福
+   * @param strPicInfo:D:/胡强101/82_套装_200/contentPic/长袖卫衣连帽三件套装4/434fe05-1.gif
+   * @param strCvsName
+   * @param strConstPicPath
+   * @return
+   * @throws Exception update 2017年10月27日
+   */
+  public static String getPicPath(final String strOldPicInfo, String strCvsName,
+      String strConstPicPath) throws Exception {
+    // D:/胡强101/82_套装_200/contentPic/长袖卫衣连帽三件套装4/434fe05-1.gif
+    // logger.info(strOldPicInfo);
+    String strExistPicFile = getOutPutLastPath(strCvsName);
+    int i = strOldPicInfo.indexOf(strExistPicFile);
+    strExistPicFile = strCvsName.substring(0, strCvsName.length() - 4)
+        + strOldPicInfo.substring(i + strExistPicFile.length(), strOldPicInfo.length());
+    if (!AiFileUtil.FileExist(strExistPicFile)) {
+      // logger.error("文件不存在:{}",strOldPicInfo);
+      // throw new Exception("文件不存在:"+strOldPicInfo);
+      return null;
+>>>>>>> .theirs
     }
     // logger.info(File.separator);
     // String strOldPicPath = getFilePath(strOldPicInfo);

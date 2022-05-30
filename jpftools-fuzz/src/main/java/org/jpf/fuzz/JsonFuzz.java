@@ -6,7 +6,7 @@ package org.jpf.fuzz;
 import com.alibaba.fastjson.JSONArray;
 
 /**
- * @author wupf@asiainfo.com
+ * @author 421722623@qq.com
  *
  */
 public class JsonFuzz {
@@ -21,7 +21,7 @@ public class JsonFuzz {
   /**
    * @category:
    * @Title: main
-   * @author:wupf@asiainfo.com
+   * @author:421722623@qq.com
    * @date:2019年2月24日
    * @param args
    */
@@ -39,7 +39,7 @@ public class JsonFuzz {
    * 
    * @category:
    * @Title: fastjson_fuzz
-   * @author:wupf@asiainfo.com
+   * @author:421722623@qq.com
    * @date:2019年2月24日
    */
   public void fastjson_fuzz() {

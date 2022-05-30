@@ -20,7 +20,6 @@ import org.apache.logging.log4j.Logger;
  * Copyright: Copyright (c) 2007
  * </p>
  * <p>
- * Company: asiainfo
  * </p>
  *
  * @author ��ƽ��

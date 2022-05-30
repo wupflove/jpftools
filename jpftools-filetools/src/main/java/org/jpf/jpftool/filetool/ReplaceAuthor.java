@@ -6,7 +6,7 @@ package org.jpf.jpftool.filetool;
 import java.util.Vector;
 
 /**
- * @author wupf@asiainfo.com
+ * @author 421722623@qq.com
  *
  */
 public class ReplaceAuthor {
@@ -21,7 +21,7 @@ public class ReplaceAuthor {
   /**
    * @category:
    * @Title: main
-   * @author:wupf@asiainfo.com
+   * @author:421722623@qq.com
    * @date:2019年2月27日
    * @param args
    */

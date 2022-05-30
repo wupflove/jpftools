@@ -25,8 +25,8 @@ public class CheckFileBlank
   {
     System.out.println("检查文件...");
     long sTime = System.currentTimeMillis();
-    DelFileBlank2("D:\\studio\\openjs\\src\\com\\asiainfo\\openboss\\openjs\\commons\\utils\\common.java");
-    //ListFile("D:\\studio\\openjs\\src\\com\\asiainfo\\openboss\\openjs\\");
+    DelFileBlank2("D:\\studio\\openjs\\src\\com\\openboss\\openjs\\commons\\utils\\common.java");
+    //ListFile("D:\\studio\\openjs\\src\\com\\openboss\\openjs\\");
     System.out.println("文件总数" + FileCount);
     System.out.println("文件行数" + FileRow);
 

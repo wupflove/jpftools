@@ -8,8 +8,7 @@ import java.io.*;
  * <p>Title: 演示如何终止线程</p>
  * <p>Description: </p>
  * <p>Copyright: Copyright (c) 2008</p>
- * <p>Company: asiainfo</p>
- * @author wupflove2003@hotmail.com
+ * @author 421722623@qq.com
  * @version 1.0
  */
 public class ThreadStop extends Thread

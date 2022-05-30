@@ -6,7 +6,7 @@ package org.jpf.fuzz.sqls;
 import java.util.Vector;
 
 /**
- * @author wupf@asiainfo.com
+ * @author 421722623@qq.com
  *
  */
 public class SqliteFuzz {
@@ -32,7 +32,7 @@ public class SqliteFuzz {
   /**
    * @category:
    * @Title: main
-   * @author:wupf@asiainfo.com
+   * @author:421722623@qq.com
    * @date:2019年2月27日
    * @param args
    */

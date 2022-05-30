@@ -5,7 +5,6 @@ package org.jpf.thread.threadpool;
  * <p>Title: </p>
  * <p>Description: 线程池</p>
  * <p>Copyright: Copyright (c) 2008</p>
- * <p>Company: asiainfo</p>
  * @author wupflove2003@hotmail.com
  * @version 1.0
  */

@@ -1,6 +1,6 @@
 /** 
 * @author 吴平福 
-* E-mail:wupf@asiainfo.com 
+* E-mail:421722623@qq.com 
 * @version 创建时间：2017年7月5日 上午10:32:51 
 * 类说明 
 */ 

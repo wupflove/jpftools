@@ -4,7 +4,7 @@
 package org.jpf.fuzz;
 
 /**
- * @author wupf@asiainfo.com
+ * @author 421722623@qq.com
  *
  */
 public class FuzzParam {

@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 /**
- * @author wupf@asiainfo.com
+ * @author 421722623@qq.com
  *
  */
 public class GsonFuzz {
@@ -26,7 +26,7 @@ public class GsonFuzz {
   /**
    * @category:
    * @Title: main
-   * @author:wupf@asiainfo.com
+   * @author:421722623@qq.com
    * @date:2019年2月24日
    * @param args
    */
@@ -41,7 +41,7 @@ public class GsonFuzz {
    *            能写入不属于 T 类型的数据，get 出来赋值给 T 类型的变量/常量报错。 解决方案： 1.手动检查列表内数据都符合泛型 T 2.改用
    *            fastjson等其它能静态检查类型的库。
    * @Title: fuzz1
-   * @author:wupf@asiainfo.com
+   * @author:421722623@qq.com
    * @date:2019年2月24日
    */
   public void fuzz1() {

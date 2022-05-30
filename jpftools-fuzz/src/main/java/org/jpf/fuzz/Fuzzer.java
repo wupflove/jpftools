@@ -15,7 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * @author wupf@asiainfo.com
+ * @author 421722623@qq.com
  *
  */
 public class Fuzzer {
@@ -40,7 +40,7 @@ public class Fuzzer {
   /**
    * @category:
    * @Title: main
-   * @author:wupf@asiainfo.com
+   * @author:421722623@qq.com
    * @date:2019年2月22日
    * @param args
    */

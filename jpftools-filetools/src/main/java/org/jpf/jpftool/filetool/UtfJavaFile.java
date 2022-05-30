@@ -25,7 +25,7 @@ public class UtfJavaFile
   private String OutPropFileName = "d://sh.properties";
 
   //读取文件的目录
-  private String InFilePath = "C:\\temp\\aa\\com\\asiainfo\\openboss\\openjs";
+  private String InFilePath = "C:\\temp\\aa\\com\\openboss\\openjs";
 
   //配置中使用的序号
   private static int PropNum = 0;
